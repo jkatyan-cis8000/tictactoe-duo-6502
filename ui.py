@@ -12,8 +12,13 @@ def get_player_input(player):
     """Prompt for row and column (1-3)."""
     while True:
         try:
-            row = int(input(f"Player {player}, enter row (1-3): ")) - 1
-            col = int(input(f"Player {player}, enter column (1-3): ")) - 1
+            move = input(f"Player {player}, enter row col (1-3 each, space-separated): ").strip()
+            parts = move.split()
+            if len(parts) != 2:
+                print("Invalid input. Enter two numbers separated by space.")
+                continue
+            row = int(parts[0]) - 1
+            col = int(parts[1]) - 1
             if row in (0, 1, 2) and col in (0, 1, 2):
                 return row, col
             print("Invalid input. Enter numbers 1-3.")
